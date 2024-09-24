@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { SigmaIcon, CircleUserRoundIcon, SearchIcon } from "lucide-react";
 import Profile from "./Profile";
 
+
 const Navbar: React.FC = () => {
     const [showProfile, setShowProfile] = useState(false);
 

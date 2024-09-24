@@ -3,12 +3,15 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../../context/userContext";
 
 const Signup : React.FC = () => {
     const navigate = useNavigate()
     const [name, setName] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
+
+    const {setUser} = useUserContext();
 
     const signupHandler = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
@@ -19,6 +22,7 @@ const Signup : React.FC = () => {
             const response = await axios.post("https://backend.harshgolyan308.workers.dev/api/v1/user/signup", {
                 name,email, password
             });
+            setUser(response.data.user)
             console.log(response.data);
             if(response.data.message) {
                 localStorage.setItem("jwt", response.data.jwt);
