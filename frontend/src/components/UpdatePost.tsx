@@ -15,38 +15,49 @@ const UpdatePost = ({ postId, onClose, onPostUpdated }) => {
                     },
                 });
                 const postData = response.data;
+                console.log(postData)
                 setTitle(postData.title);
                 setContent(postData.content);
-                onPostUpdated(postId, postData)
+                // onPostUpdated(postId, postData)
             } catch (error) {
                 console.log("Error fetching post data:", error);
             }
         };
 
         fetchPostData();
-    }, [postId]);
+    }, []);
 
-    const handleSubmit = async (e : React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const response = await axios.put(" https://backend.harshgolyan308.workers.dev/api/v1/blog/update-blog", {
-                headers : {
-                    "Content-Type": "application/json",
-                    "Authorization": "Bearer " + localStorage.getItem("jwt"),
+            const jwt = localStorage.getItem("jwt");
+            if (!jwt) {
+                throw new Error("No JWT found, please sign in.");
+            }
+    
+            const response = await axios.put(
+                "https://backend.harshgolyan308.workers.dev/api/v1/blog/update-blog", 
+                {
+                    id: postId,
+                    title: title,
+                    content: content,
                 },
-                data : {
-                    id : postId,
-                    title : title,
-                    content : content
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${jwt}`,
+                    },
                 }
-            })
-            console.log(response)
+            );
+            console.log(response);
         } catch (error) {
-            console.log(error)
-        } finally {
-            onClose()
+            console.error("Error updating post:", error);
         }
-    }
+        finally {
+            onClose();
+        }
+    };
+    
 
     return (
         <div>

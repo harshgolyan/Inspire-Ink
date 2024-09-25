@@ -30,6 +30,7 @@ const EllipsePop = ({ postId, onPostDeleted, onPostUpdated, setOpenIndex }) => {
 
     const closeUpdateModal = () => {
         setShowUpdateModal(false);
+        setOpenIndex(null);
     };
 
     return (
@@ -49,7 +50,7 @@ const EllipsePop = ({ postId, onPostDeleted, onPostUpdated, setOpenIndex }) => {
                 </div>
             </div>
             <Modal isOpen={showUpdateModal} onClose={closeUpdateModal}>
-                <UpdatePost postId={postId} onClose={closeUpdateModal} onPostUpdated={onPostUpdated} setOpenIndex={setOpenIndex} />
+                <UpdatePost postId={postId} onClose={closeUpdateModal} onPostUpdated={onPostUpdated}/>
             </Modal>
         </div>
     );
