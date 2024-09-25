@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { UserProvider } from './context/userContext'
 import {MyPostsArray} from "./components/MyPosts";
+import UpdatePost from "./components/UpdatePost";
 
 const App = () => {
   return (

@@ -14,8 +14,8 @@ type MyPostsProps = {
   index: number;
   openIndex: number | null;
   setOpenIndex: (index: number | null) => void;
-  onPostDeleted : string | void;
-  onPostUpdated : string | void;
+  onPostDeleted: (id: string) => void;
+  onPostUpdated: (id: string, updatedData: string) => void;
 };
 
 const MyPosts = ({ id, title, content, author, index, openIndex, setOpenIndex, onPostDeleted, onPostUpdated }: MyPostsProps) => {
@@ -47,6 +47,7 @@ const MyPosts = ({ id, title, content, author, index, openIndex, setOpenIndex, o
                   postId={id}
                   onPostDeleted={onPostDeleted}
                   onPostUpdated={onPostUpdated}
+                  setOpenIndex={setOpenIndex}
                 />
               </div>
             )}
@@ -67,6 +68,7 @@ const MyPosts = ({ id, title, content, author, index, openIndex, setOpenIndex, o
 };
 
 export default MyPosts;
+
 
 
 interface MyPostsData {
@@ -107,14 +109,12 @@ export function MyPostsArray() {
     blogsHandler();
   }, []);
 
-  const handlePostDeleted = (deletedPostId) => {
-    // Filter out the deleted post from the list
+  const handlePostDeleted = (deletedPostId: string) => {
     setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog.id !== deletedPostId));
     setOpenIndex(null)
   };
 
   const handlePostUpdated = (updatedPostId : string, updatedData : string) => {
-    // Update the post in the list with the updated data
     setBlogs((prevBlogs) =>
       prevBlogs.map((blog) =>
         blog.id === updatedPostId ? { ...blog, ...updatedData } : blog
@@ -143,8 +143,8 @@ export function MyPostsArray() {
                 index={index}
                 openIndex={openIndex}
                 setOpenIndex={setOpenIndex}
-                onPostDeleted={handlePostDeleted}   // Pass delete handler
-                onPostUpdated={handlePostUpdated}   // Pass update handler
+                onPostDeleted={handlePostDeleted} 
+                onPostUpdated={handlePostUpdated}  
               />
             ))
           )}
