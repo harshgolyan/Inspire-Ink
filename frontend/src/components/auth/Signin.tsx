@@ -51,7 +51,7 @@ const Signin : React.FC = () => {
                             <input className="border-2 p-2 rounded-lg bg-slate-800 border-fuchsia-800" type="text" placeholder="********" onChange={(e) => setPassword(e.target.value)} required />
                         </div>
                         <div className="">
-                            <div className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-700 to-blue-900 flex justify-end p-2 font-medium">
+                            <div className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-700 to-blue-900 flex justify-end p-2 font-medium cursor-pointer" onClick={() => {navigate('/')}}>
                                Create an Account !
                             </div>
                         </div>

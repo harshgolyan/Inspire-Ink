@@ -2,7 +2,8 @@ import React from "react";
 import { useUserContext } from "../context/userContext";
 import { UserRoundIcon, ArrowRight, PlusIcon, BookIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import CreatePost from "./CreatePost";
+
+
 const Profile = () => {
     const navigate = useNavigate();
     const {user} = useUserContext();
@@ -38,11 +39,11 @@ const Profile = () => {
                             Create a Blog
                         </div>
                     </div>
-                    <div className="flex justify-around items-center p-4 rounded-lg bg-yellow-600 mt-2">
+                    <div className="flex justify-around items-center p-4 rounded-lg bg-yellow-600 mt-2 cursor-pointer">
                         <div>
                             <BookIcon color="white" />
                         </div>
-                        <div className="font-semibold text-lg text-white">
+                        <div className="font-semibold text-lg text-white" onClick={() => navigate('/my-posts')}>
                             Your Posts
                         </div>
                     </div>

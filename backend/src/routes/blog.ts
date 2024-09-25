@@ -105,6 +105,35 @@ blogRouter.get('/get-blog/:id', async (c) => {
     }
 })
 
+blogRouter.get('/my-blogs', async (c) => {
+	const prisma = new PrismaClient({
+		datasourceUrl: c.env?.DATABASE_URL	,
+	}).$extends(withAccelerate());
+    const authorId = c.get("userId")
+	
+    try {
+        const myPosts = await prisma.post.findMany({
+            where: {
+                authorId : authorId
+            },
+            select: {
+                id: true,
+                title: true,
+                content: true,
+                authorId : true,
+                author: {
+                    select: {
+                        name: true
+                    }
+                }
+            }
+        });
+        return c.json(myPosts);
+    } catch (error) {
+        return c.json({error: "can not get blog "})
+    }
+})
+
 blogRouter.get('/bulk', async (c) => {
 	const prisma = new PrismaClient({
 		datasourceUrl: c.env?.DATABASE_URL	,
@@ -116,6 +145,7 @@ blogRouter.get('/bulk', async (c) => {
                 id: true,
                 title: true,
                 content: true,
+                authorId : true,
                 author: {
                     select: {
                         name: true
