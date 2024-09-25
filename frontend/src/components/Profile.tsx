@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useUserContext } from "../context/userContext";
 import { UserRoundIcon, ArrowRight, PlusIcon, BookIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import "../App.css"
 
 
 const Profile = () => {
+    const [isVisible, setIsVisible] = useState(false);
     const navigate = useNavigate();
     const {user} = useUserContext();
     console.log(user)
+
+    useEffect(() => {
+        setIsVisible(true);
+    }, [])
 
     const logOutHandler = () => {
         localStorage.removeItem('jwt')
@@ -22,8 +28,8 @@ const Profile = () => {
     return (
         <>
             <div>
-                <div className="h-[42vh] w-[35vh] p-5 bg-slate-400 z-10 rounded-lg ">
-                    <div className="flex justify-around items-center border p-4 rounded-lg bg-white mt-2">
+                <div className={`h-[42vh] w-[35vh] p-5 bg-slate-400 z-10 rounded-lg ${isVisible ? 'slide-in' : 'opacity-0'} `}>
+                    <div className="flex justify-around items-center border border-zinc-800 p-4 rounded-lg bg-zinc-300 mt-2">
                         <div>
                             <UserRoundIcon />
                         </div>
@@ -31,7 +37,7 @@ const Profile = () => {
                             {user?.name.toUpperCase()}
                         </div>
                     </div>
-                    <div className="flex justify-around items-center p-4 rounded-lg bg-green-600 mt-2 cursor-pointer" onClick={createPostHandler}>
+                    <div className="flex justify-around items-center p-4 rounded-lg bg-zinc-400 mt-2 cursor-pointer border border-zinc-800" onClick={createPostHandler}>
                         <div>
                             <PlusIcon color="white" />
                         </div>
@@ -39,15 +45,15 @@ const Profile = () => {
                             Create a Blog
                         </div>
                     </div>
-                    <div className="flex justify-around items-center p-4 rounded-lg bg-yellow-600 mt-2 cursor-pointer">
+                    <div className="flex justify-around items-center p-4 rounded-lg bg-zinc-500 border border-zinc-800 mt-2 cursor-pointer" onClick={() => navigate('/my-posts')}>
                         <div>
                             <BookIcon color="white" />
                         </div>
-                        <div className="font-semibold text-lg text-white" onClick={() => navigate('/my-posts')}>
+                        <div className="font-semibold text-lg text-white" >
                             Your Posts
                         </div>
                     </div>
-                    <div className="flex justify-around items-center p-4 rounded-lg bg-red-600 mt-2 cursor-pointer" onClick={logOutHandler}>
+                    <div className="flex justify-around items-center p-4 rounded-lg bg-red-600 mt-2 border border-zinc-800 cursor-pointer" onClick={logOutHandler}>
                         <div className="font-semibold text-lg text-white uppercase">
                            Log Out
                         </div>

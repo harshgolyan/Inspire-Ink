@@ -114,7 +114,7 @@ export function MyPostsArray() {
     setOpenIndex(null)
   };
 
-  const handlePostUpdated = (updatedPostId : string, updatedData : string) => {
+  const handlePostUpdated = (updatedPostId : string, updatedData : any) => {
     setBlogs((prevBlogs) =>
       prevBlogs.map((blog) =>
         blog.id === updatedPostId ? { ...blog, ...updatedData } : blog

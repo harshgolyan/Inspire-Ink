@@ -1,7 +1,12 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 
-const UpdatePost = ({ postId, onClose, onPostUpdated }) => {
+interface UpdatePostProps {
+    postId : string,
+    onClose : () => void,
+}
+
+const UpdatePost = ({ postId, onClose}: UpdatePostProps) => {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
 

@@ -5,6 +5,7 @@ import axios from 'axios';
 import Skeleton from '../Skeleton';
 
 interface BlogData {
+  id: string;
   title: string;
   content: string;
   author: {
@@ -41,17 +42,23 @@ function Blogs() {
   }, []);
 
   return (
-    <div className="bg-slate-800 min-h-screen">
+    <div className="bg-slate-800 min-h-screen overflow-hidden">
       <div>
         <Navbar />
-        <div className="pt-[20vh] mx-[3%]"> 
+        <div className="pt-[20vh] mx-[3%]">
           {loading ? (
             Array.from({ length: 5 }).map((_, index) => (
               <Skeleton key={index} />
             ))
           ) : (
             blogs.map((item, index) => (
-              <Blog key={index} title={item.title} content={item.content} author={item.author.name} />
+              <Blog
+                key={index}
+                id={item.id}
+                title={item.title}
+                content={item.content}
+                author={item.author.name}
+              />
             ))
           )}
         </div>

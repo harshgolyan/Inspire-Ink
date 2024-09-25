@@ -1,0 +1,33 @@
+/* Profile.css (or your main CSS file) */
+
+@keyframes slide-in {
+    0% {
+        transform: translateX(100%); /* Start from the right */
+        opacity: 0; /* Invisible */
+    }
+    100% {
+        transform: translateX(0); /* End at original position */
+        opacity: 1; /* Fully visible */
+    }
+}
+
+.slide-in {
+    animation: slide-in 0.5s forwards;
+}
+/* Modal.css */
+
+@keyframes slide-down {
+    0% {
+        transform: translateY(-100%); /* Start from above the viewport */
+        opacity: 0; /* Invisible */
+    }
+    100% {
+        transform: translateY(0); /* End at its original position */
+        opacity: 1; /* Fully visible */
+    }
+}
+
+.modal-enter {
+    animation: slide-down 0.5s forwards; /* Slide down animation */
+}
+

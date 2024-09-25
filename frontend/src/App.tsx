@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { UserProvider } from './context/userContext'
 import {MyPostsArray} from "./components/MyPosts";
-import UpdatePost from "./components/UpdatePost";
+import BlogDetail from "./components/main/BlogDetail";
 
 const App = () => {
   return (
@@ -20,6 +20,7 @@ const App = () => {
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/create-post" element={<CreatePost />} />
             <Route path="/my-posts" element={<MyPostsArray />} />
+            <Route path="/blog/:id" element={<BlogDetail />} />
           </Routes>
           <ToastContainer />
         </BrowserRouter>
