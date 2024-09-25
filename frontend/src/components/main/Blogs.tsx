@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Navbar from '../Navbar';
 import Blog from './Blog';
 import axios from 'axios';
@@ -29,7 +29,6 @@ function Blogs() {
             },
           }
         );
-        console.log(response.data);
         setBlogs(response.data);
       } catch (error) {
         console.error("Error fetching blogs:", error);

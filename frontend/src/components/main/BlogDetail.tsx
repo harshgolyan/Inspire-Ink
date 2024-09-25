@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Skeleton from '../Skeleton';
@@ -31,7 +31,6 @@ function BlogDetail() {
           }
         );
         setBlog(response.data);
-        console.log(response.data)
       } catch (error) {
         console.error("Error fetching blog post:", error);
       } finally {

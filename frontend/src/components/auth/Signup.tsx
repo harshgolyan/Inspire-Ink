@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../context/userContext";
-import Signin from "./Signin";
 
 const Signup : React.FC = () => {
     const navigate = useNavigate()
@@ -24,7 +23,6 @@ const Signup : React.FC = () => {
                 name,email, password
             });
             setUser(response.data.user)
-            console.log(response.data);
             if(response.data.message) {
                 localStorage.setItem("jwt", response.data.jwt);
                 toast.update(loadingToast, { render: response.data.message, type: "success", isLoading: false, autoClose: 3000 });

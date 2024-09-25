@@ -21,7 +21,6 @@ const Signin : React.FC = () => {
                 email, password
             });
             setUser(response.data.user)
-            console.log(response.data);
             if(response.data.message) {
                 localStorage.setItem("jwt", response.data.jwt);
                 toast.update(loadingToast, { render: response.data.message, type: "success", isLoading: false, autoClose: 3000 });

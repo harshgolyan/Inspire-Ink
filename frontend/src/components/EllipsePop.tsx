@@ -1,15 +1,14 @@
 import axios from "axios";
-import React, { useState } from "react";
+import { useState } from "react";
 import Modal from './Modal'; // Import the Modal component
 import UpdatePost from './UpdatePost'; // Import the UpdatePost component
 
 interface EllipsePopProps {
     postId : string,
     onPostDeleted: (id: string) => void,
-    onPostUpdated: (id: string, updatedPost: any) => void,
     setOpenIndex: (index: number | null) => void
 }
-const EllipsePop = ({ postId, onPostDeleted, onPostUpdated, setOpenIndex }: EllipsePopProps) => {
+const EllipsePop = ({ postId, onPostDeleted, setOpenIndex }: EllipsePopProps) => {
     const [showUpdateModal, setShowUpdateModal] = useState(false);
 
     const onDeleteHandler = async () => {
@@ -56,7 +55,7 @@ const EllipsePop = ({ postId, onPostDeleted, onPostUpdated, setOpenIndex }: Elli
                 </div>
             </div>
             <Modal isOpen={showUpdateModal} onClose={closeUpdateModal}>
-                <UpdatePost postId={postId} onClose={closeUpdateModal} onPostUpdated={onPostUpdated}/>
+                <UpdatePost postId={postId} onClose={closeUpdateModal}/>
             </Modal>
         </div>
     );

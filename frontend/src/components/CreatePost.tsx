@@ -20,7 +20,7 @@ const CreatePost: React.FC = () => {
                     "Authorization": "Bearer " + localStorage.getItem("jwt")
                 },
             })
-            console.log(response.data);
+            console.log(response)
         } catch (error) {
             console.log(error)
         }

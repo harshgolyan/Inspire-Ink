@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useUserContext } from "../context/userContext";
 import { UserRoundIcon, ArrowRight, PlusIcon, BookIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +9,6 @@ const Profile = () => {
     const [isVisible, setIsVisible] = useState(false);
     const navigate = useNavigate();
     const {user} = useUserContext();
-    console.log(user)
 
     useEffect(() => {
         setIsVisible(true);
@@ -17,7 +16,6 @@ const Profile = () => {
 
     const logOutHandler = () => {
         localStorage.removeItem('jwt')
-        console.log("jwt removed")
         navigate('/signin')
     }
 

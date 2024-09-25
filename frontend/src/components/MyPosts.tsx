@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Avatar from "./Avatar";
 import Skeleton from './Skeleton';
 import axios from "axios";
@@ -18,7 +18,7 @@ type MyPostsProps = {
   onPostUpdated: (id: string, updatedData: string) => void;
 };
 
-const MyPosts = ({ id, title, content, author, index, openIndex, setOpenIndex, onPostDeleted, onPostUpdated }: MyPostsProps) => {
+const MyPosts = ({ id, title, content, author, index, openIndex, setOpenIndex, onPostDeleted }: MyPostsProps) => {
   const isOpen = openIndex === index;
 
   const togglePopUp = () => {
@@ -46,7 +46,6 @@ const MyPosts = ({ id, title, content, author, index, openIndex, setOpenIndex, o
                 <EllipsePop
                   postId={id}
                   onPostDeleted={onPostDeleted}
-                  onPostUpdated={onPostUpdated}
                   setOpenIndex={setOpenIndex}
                 />
               </div>
@@ -97,7 +96,6 @@ export function MyPostsArray() {
             },
           }
         );
-        console.log(response.data);
         setBlogs(response.data);
       } catch (error) {
         console.error("Error fetching blogs:", error);

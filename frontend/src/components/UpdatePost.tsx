@@ -20,7 +20,6 @@ const UpdatePost = ({ postId, onClose}: UpdatePostProps) => {
                     },
                 });
                 const postData = response.data;
-                console.log(postData)
                 setTitle(postData.title);
                 setContent(postData.content);
                 // onPostUpdated(postId, postData)
@@ -54,7 +53,7 @@ const UpdatePost = ({ postId, onClose}: UpdatePostProps) => {
                     },
                 }
             );
-            console.log(response);
+            console.log(response)
         } catch (error) {
             console.error("Error updating post:", error);
         }
