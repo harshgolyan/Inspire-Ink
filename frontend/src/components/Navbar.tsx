@@ -20,7 +20,7 @@ const Navbar: React.FC = () => {
     return (
         <div className="fixed top-0 z-10 bg-primary w-full p-5 border-b border-secondary">
             <div className="flex justify-between items-center">
-                <div className="text-secondary font-bold text-lg flex items-center space-x-3">
+                <div className="text-secondary font-bold text-lg flex items-center space-x-3" onClick={() => navigate("/")}>
                     <SigmaIcon color="white" size={40} />
                     <div className="text-secondary font-bold text-2xl">
                         Inspire Ink
