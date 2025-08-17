@@ -1,7 +1,7 @@
 const Skeleton = () => {
   return (
     <div role="status" className="max-w-sm animate-pulse">
-      <div className="h-auto w-[90vw] mx-5 border-b m-5 p-3 flex flex-col shadow-sm shadow-neutral-200">
+      <div className="h-auto w-[90vw] mx-5 border-b m-5 p-3 flex flex-col border-b border-neutral-200">
         
         <div className="flex items-center mb-3">
           <div className="h-10 w-10 bg-neutral-200 rounded-full"></div>

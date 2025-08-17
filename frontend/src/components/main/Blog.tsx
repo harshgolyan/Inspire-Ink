@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import Avatar from "../Avatar";
 import { Link } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 interface BlogProps {
   id: string;
@@ -11,7 +13,7 @@ interface BlogProps {
 
 const Blog = ({ id, title, content, author }: BlogProps) => {
   const [isVisible, setIsVisible] = useState(false);
-  const blogRef = useRef(null);
+  const blogRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -48,12 +50,16 @@ const Blog = ({ id, title, content, author }: BlogProps) => {
       }`}
     >
       <div className="flex items-center mb-3">
-        <Avatar initials={author ? author[0].toUpperCase() : "N/A"} />
-        <div className="text-primary font-medium pl-4">{author || "Unknown Author"}</div>
+        <Avatar initials={author ? author[0].toUpperCase() : "U"} />
+        <div className="text-primary font-medium pl-4">
+          {author || "Unknown Author"}
+        </div>
       </div>
       <div className="font-bold text-3xl text-primary mb-2">{title}</div>
-      <div className="font-normal text-lg text-primary mb-2">
-        {content.length > 200 ? `${content.substr(0, 200)}...` : content}
+      <div className="font-normal text-lg text-primary mb-2 prose prose-sm max-w-none line-clamp-4">
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          {content.length > 300 ? content.substring(0, 300) + "..." : content}
+        </ReactMarkdown>
       </div>
       <div className="mt-2 text-sm text-primary/70">
         Read time: {Math.ceil(content.length / 100)} minutes

@@ -1,14 +1,20 @@
-import React, { useState } from "react";
-import { SigmaIcon, CircleUserRoundIcon, SearchIcon } from "lucide-react";
-import Profile from "./Profile";
+import React from "react";
+import {
+    SigmaIcon,
+    CircleUserRoundIcon,
+    SearchIcon,
+    PlusCircleIcon,
+    BookIcon
+} from "lucide-react";
 import { useUserContext } from "../context/userContext";
+import { useNavigate } from "react-router-dom";
 
 const Navbar: React.FC = () => {
-    const [showProfile, setShowProfile] = useState(false);
     const { user } = useUserContext();
+    const navigate = useNavigate();
 
-    const handleProfileClick = () => {
-        setShowProfile((prev) => !prev);
+    const createPostHandler = () => {
+        navigate("/create-post");
     };
 
     return (
@@ -26,23 +32,35 @@ const Navbar: React.FC = () => {
                         type="text"
                         placeholder="Search the blog..."
                     />
-                    <SearchIcon 
-                        className="absolute left-3 top-1/2 transform -translate-y-1/2 text-primary" 
-                        size={24} 
+                    <SearchIcon
+                        className="absolute left-3 top-1/2 transform -translate-y-1/2 text-primary"
+                        size={24}
                     />
                 </div>
-                <div className="text-secondary font-medium flex items-center space-x-3">
-                    <span>Hello, {user?.name}</span>
-                    <div onClick={handleProfileClick} className="cursor-pointer">
-                        <CircleUserRoundIcon color="white" size={40} />
+                <div className="flex items-center space-x-4">
+                    <div
+                        className="flex justify-around items-center p-4 cursor-pointer"
+                        onClick={createPostHandler}
+                    >
+                        <div>
+                            <PlusCircleIcon color="white" size={36}/>
+                        </div>
+                    </div>
+                    <div className="flex justify-around items-center p-2 cursor-pointer border-2 border-white rounded-full" onClick={() => navigate('/my-posts')}>
+                        <div>
+                            <BookIcon color="white" size={16}/>
+                        </div>
+                    </div>
+                    <div className="text-secondary font-medium flex items-center space-x-3">
+                        <span>Hello, {user?.name}</span>
+                        <div
+                            className="cursor-pointer"
+                        >
+                            <CircleUserRoundIcon color="white" size={40} />
+                        </div>
                     </div>
                 </div>
             </div>
-            {showProfile && (
-                <div className="absolute right-5 top-20 mt-2 z-20">
-                    <Profile />
-                </div>
-            )}
         </div>
     );
 };
