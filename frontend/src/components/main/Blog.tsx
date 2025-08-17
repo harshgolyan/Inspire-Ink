@@ -3,15 +3,15 @@ import Avatar from "../Avatar";
 import { Link } from "react-router-dom";
 
 interface BlogProps {
-    id :string,
-    title: string,
-    content: string,
-    author: string,
+  id: string;
+  title: string;
+  content: string;
+  author: string;
 }
 
-const Blog = ({ id, title, content, author } : BlogProps) => {
+const Blog = ({ id, title, content, author }: BlogProps) => {
   const [isVisible, setIsVisible] = useState(false);
-  const blogRef = useRef(null); 
+  const blogRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -42,24 +42,26 @@ const Blog = ({ id, title, content, author } : BlogProps) => {
 
   return (
     <div
-      ref={blogRef} 
-      className={`h-auto w-[90vw] mx-5 rounded-lg border m-5 p-3 flex flex-col bg-slate-700 transform transition-transform duration-700 ease-out cursor-pointer ${
+      ref={blogRef}
+      className={`h-auto w-[90vw] mx-5 border-b p-5 flex flex-col bg-secondary transform transition-transform duration-700 ease-out cursor-pointer ${
         isVisible ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"
       }`}
     >
       <div className="flex items-center mb-3">
-        <div>
-          <Avatar initials={author ? author[0].toUpperCase() : "N/A"} />
-        </div>
-        <div className="text-white font-thin pl-4">{author || "Unknown Author"}</div>
+        <Avatar initials={author ? author[0].toUpperCase() : "N/A"} />
+        <div className="text-primary font-medium pl-4">{author || "Unknown Author"}</div>
       </div>
-      <div className="font-bold text-4xl text-white mb-2">{title}</div>
-      <div className="font-medium text-lg text-white mb-2">
+      <div className="font-bold text-3xl text-primary mb-2">{title}</div>
+      <div className="font-normal text-lg text-primary mb-2">
         {content.length > 200 ? `${content.substr(0, 200)}...` : content}
       </div>
-      <div className="mt-auto text-white">Read time: {Math.ceil(content.length / 100)} minutes</div>
-      <Link to={`/blog/${id}`}>
-        <button className="mt-4 bg-blue-500 p-2 rounded-lg text-white">Read More</button>
+      <div className="mt-2 text-sm text-primary/70">
+        Read time: {Math.ceil(content.length / 100)} minutes
+      </div>
+      <Link to={`/blog/${id}`} className="mt-4">
+        <button className="px-4 py-2 border border-primary text-primary hover:bg-primary hover:text-secondary transition">
+          Read More
+        </button>
       </Link>
     </div>
   );

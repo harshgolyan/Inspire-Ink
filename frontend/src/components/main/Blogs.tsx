@@ -3,6 +3,7 @@ import Navbar from '../Navbar';
 import Blog from './Blog';
 import axios from 'axios';
 import Skeleton from '../Skeleton';
+import Ads from '../Ads';
 
 interface BlogData {
   id: string;
@@ -41,10 +42,11 @@ function Blogs() {
   }, []);
 
   return (
-    <div className="bg-slate-800 min-h-screen overflow-hidden">
+    <div className="bg-white min-h-screen overflow-hidden">
       <div>
         <Navbar />
-        <div className="pt-[20vh] mx-[3%]">
+        <Ads />
+        <div className="pt-[10vh] mx-[3%]">
           {loading ? (
             Array.from({ length: 5 }).map((_, index) => (
               <Skeleton key={index} />

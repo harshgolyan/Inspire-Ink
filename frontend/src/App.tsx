@@ -11,7 +11,7 @@ import BlogDetail from "./components/main/BlogDetail";
 const App = () => {
   return (
     <UserProvider> 
-      <div className="bg-slate-800">
+      <div className="bg-white">
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Signup />} />
